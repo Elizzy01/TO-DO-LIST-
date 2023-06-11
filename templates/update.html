@@ -54,29 +54,19 @@
           <form method="post">
             {%csrf_token%}
           <label for="exampleFormControlInput1" class="form-label">Name</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter Todo", name="name">
-          <label for="exampleFormControlInput2" class="form-label">Completed</label>
-          <input type="checkbox"  id="exampleFormControlInput2" name="completed" ><br>
+          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter Todo" name="name" value="{{name}}">
+          <label for="" class="form-label">Completed</label>
+          <input type="checkbox"  id="" name="completed" {%if item.completed == True %}checked {%endif%}><br>
           <button class="btn btn-primary">Submit</button>
           </form>
         </div>
   
         <div class="todo_list">
-          <h3>MyTodo Items</h3>
+          <h3>MyTodo Item</h3>
           <ul class="list-group">
-            {%for item in todolist%}
-              {%if item.completed == True%}
-              <del>
-                <li class="list-group-item">
-                  {{item.name}} | {{item.id}}<a href="{%url 'deleteitem' item.pk%}" class="btn btn-warning" style="float:right">Delete</a> <a href="{%url 'update' item.pk%}" class="btn btn-info" style="float:right">Edit</a>  
-                </li>
-              </del>
-              {%else%}
               <li class="list-group-item">
-                {{item.name}} {{item.id}} <a href="{%url 'deleteitem' item.pk%}" class="btn btn-warning" style="float:right">Delete</a> <a href="{%url 'update' item.pk%}" class="btn btn-info" style="float:right">Edit</a> 
+                {{item.name}}
               </li>
-              {%endif%}
-            {%endfor%}
 
           </ul>
         </div>
